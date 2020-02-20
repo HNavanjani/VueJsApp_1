@@ -1,29 +1,80 @@
 <template>
    <div>
+       <div class="card" style="width: 40rem;">
+            <div class="card-body">
        <form>
+           <h1 class="card-title">Sign Up</h1>
+            <div class="form-group">
+               <label for="name">Name - {{models.name}}</label>
+               <input v-model="models.name" type="text" class="form-control" id="name" placeholder="Enter User Name">
+            </div>
            <div class="form-group">
-               <label for="exampleInputEmail1">Email address</label>
-               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+               <label for="email">Email- {{models.email}}</label>
+               <input v-model="models.email" type="email" class="form-control" id="email" placeholder="Enter email">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label for="password">Password- {{models.password}}</label>
+                <input v-model="models.password" type="password" class="form-control" id="password" placeholder="Password">
             </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button @click.prevent="click" class="btn btn-primary" >Submit</button>
         </form>
+    </div>
+    </div>
     </div>
 </template>
 
 <script>
 export default {
     name :'Signup',
+     data () {
+        return {
+        info: null,
+        models :{
+            name:'',
+            email:'',
+            password:''
+        }
+        }
+    },
+    beforeCreate() {
+        //alert('beforeCreate');
+    },
+    created() {
+        //alert('created');
+    },
+    beforeMount() {
+        //alert('beforeMount');
+    },
+    mounted() {
+        //alert('mounted');
+    },
+    beforeUpdate() {
+        //alert('beforeUpdate');
+    },
+    updated() {
+        //alert('updated');
+    },
+    beforeDestroy() {
+        //alert('beforeDestroy');
+    },
+    destroyed() {
+        //alert('destroyed');
+    },
+    methods :{
+        click(){
+            this.axios
+            .post('/api/sign-up',this.models)
+            .then(response => 
+            {
+                console.log(response)
+                this.info = response
+            }
+            )
+        }
+    }
     
 }
+
 
 
 

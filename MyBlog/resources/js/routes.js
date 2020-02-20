@@ -1,4 +1,6 @@
 import Signup from './components/Signup';
+import Login from './components/Login';
+
 
 export const routes = [
     {
@@ -7,5 +9,13 @@ export const routes = [
     meta: {layout:'sign-up'},
     component: Signup
 }
+,
+{
+    path: '/login',
+    name: 'login',
+    meta: {layout:'login'},
+    component: Login
+}
+
 ];
 

@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\User;
 
-class DefaultController extends Controller
+
+class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,7 @@ class DefaultController extends Controller
      */
     public function index()
     {
-        return view('layouts.app');
+        //
     }
 
     /**
@@ -80,5 +83,19 @@ class DefaultController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function register(Request $request)
+    {
+        //dd($request -> all());
+
+        $input = $request->all();
+        if(User::create($input)){
+            true;
+        }
+        else{
+            false;
+        }
+          //echo 'THIS IS REGISTER FUNCTION';
+        //dd('THIS IS REGISTER FUNCTION');
     }
 }
