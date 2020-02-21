@@ -18,3 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('sign-up', 'Auth\AuthController@register');
+
+Route::post('login', 'Auth\AuthController@login');
+
+Route::post('/post/create', 'BlogPostController@store');
+Route::get('/post/edit/{id}', 'BlogPostController@edit');
+Route::post('/post/update/{id}', 'BlogPostController@update');
+Route::delete('/post/delete/{id}', 'BlogPostController@delete');
+Route::get('/posts', 'BlogPostController@index');
+
+//Route::get('login', 'BlogController@index');
+

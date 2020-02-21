@@ -5,14 +5,14 @@
        <form>
            <h1 class="card-title">Login</h1>
            <div class="form-group">
-               <label for="exampleInputEmail1">Email address</label>
-               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+               <label for="email">Email- {{models.email}} {{errors.email}}</label>
+               <input v-model="models.email" type="email" class="form-control" id="email" placeholder="Enter email">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label for="password">Password- {{models.password}} {{errors.password}}</label>
+                <input v-model="models.password" type="password" class="form-control" id="password" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button @click.prevent="click" class="btn btn-primary" >Login</button>
         </form>
     </div>
     </div>
@@ -22,37 +22,81 @@
 <script>
 export default {
     name :'Login',
-    data () {
+     data () {
         return {
-        info: null
+        info: null,
+        models :{
+            email:'',
+            password:''
+        },
+        errors :{
+            email:'',
+            password:''
+        },
         }
     },
     beforeCreate() {
-        alert('beforeCreate');
+        //alert('beforeCreate');
     },
     created() {
-        alert('created');
+        //alert('created');
     },
     beforeMount() {
-        alert('beforeMount');
+        //alert('beforeMount');
     },
     mounted() {
-        alert('mounted');
+        //alert('mounted');
     },
     beforeUpdate() {
-        alert('beforeUpdate');
+        //alert('beforeUpdate');
     },
     updated() {
-        alert('updated');
+        //alert('updated');
     },
     beforeDestroy() {
-        alert('beforeDestroy');
+        //alert('beforeDestroy');
     },
     destroyed() {
-        alert('destroyed');
+        //alert('destroyed');
+    },
+    
+    methods :{
+        
+        click(){
+            this.axios
+            .post('/api/login',this.models)
+            .then(response => 
+            {
+                console.log(response.data)
+                this.info = response
+
+           if(response.data.status == 'success'){
+               console.log('SUCCESS')
+
+           }
+           else if(response.data.status == 'error'){
+              //console.log(response.data.message)
+              this.errors.email = response.data.message;
+              this.errors.password = response.data.message;
+
+           }
+
+            }
+            
+            )
+        }
+           
+       
+
+
+        
     }
     
 }
+
+
+
+
 
 </script>
 

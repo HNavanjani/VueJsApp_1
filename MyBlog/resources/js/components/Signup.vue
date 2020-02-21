@@ -16,7 +16,7 @@
                 <label for="password">Password- {{models.password}}</label>
                 <input v-model="models.password" type="password" class="form-control" id="password" placeholder="Password">
             </div>
-            <button @click.prevent="click" class="btn btn-primary" >Submit</button>
+            <button @click.prevent="click" class="btn btn-primary" >Sign Up</button>
         </form>
     </div>
     </div>
