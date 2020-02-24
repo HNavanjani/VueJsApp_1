@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\BlogPost;
-use App\AgeGroupCategory;
-use App\Http\Resources\BlogPostCollection;
 
-class BlogPostController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +13,8 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-        //return new BlogPostCollection(BlogPost::all());
-        
-        //***********For Many to Many relationships -> getting data from AgeGroupCategory Table : display age groups in particular category */
-        $data = AgeGroupCategory::where(['category_id'=>'3'])->get();
-        dd($data);
-
+        $a = Blog::find(1);
+        dd($a);
     }
 
     /**
@@ -42,15 +35,7 @@ class BlogPostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new BlogPost([
-            'title' => $request->get('title'),
-            'body' => $request->get('body')
-          ]);
-    
-        $post->save();
-    
-        return response()->json('success');
-        
+        //
     }
 
     /**
@@ -72,8 +57,7 @@ class BlogPostController extends Controller
      */
     public function edit($id)
     {
-        $post = BlogPost::find($id);
-        return response()->json($post);
+        //
     }
 
     /**
@@ -85,11 +69,7 @@ class BlogPostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = BlogPost::find($id);
-
-        $post->update($request->all());
-
-        return response()->json('successfully updated');
+        //
     }
 
     /**
@@ -98,12 +78,8 @@ class BlogPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function destroy($id)
     {
-        $post = BlogPost::find($id);
-
-        $post->delete();
-
-        return response()->json('successfully deleted');
+        //
     }
 }
